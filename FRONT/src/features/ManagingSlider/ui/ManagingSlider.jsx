@@ -8,10 +8,10 @@ const ManagingSlider = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentItem((current) => (current + 1) % MANAGING_TYPES.length);
-    }, 10000);
+    }, 6000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [currentItem]);
 
   return (
     <section className="w-full my-40 px-[10%]">
