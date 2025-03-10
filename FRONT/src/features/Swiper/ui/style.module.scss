@@ -1,0 +1,368 @@
+// Основные стили для слайдера
+.slider_wrapper {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+  margin: 40px 0;
+}
+
+.custom_swiper {
+  width: 100%;
+  height: 100%;
+  padding: 50px 0;
+}
+
+.custom_slide {
+  width: 40vw;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.8s ease; // Увеличили время перехода для плавности
+  opacity: 0.5;
+  transform: scale(0.8);
+  z-index: 1; // Все неактивные слайды имеют z-index: 1
+}
+
+.custom_slide_active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10; // Только активный слайд имеет z-index: 10
+}
+
+.slide_image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+// Стили для скелетона при загрузке
+.skeleton_slide {
+  position: absolute;
+  width: 40vw;
+  height: 40vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &:nth-child(1) {
+    transform: translate(-150%, -50%) scale(0.8);
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  &:nth-child(2) {
+    transform: translate(-100%, -50%) scale(0.9);
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  &:nth-child(3) {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 10;
+  }
+
+  &:nth-child(4) {
+    transform: translate(0%, -50%) scale(0.9);
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  &:nth-child(5) {
+    transform: translate(50%, -50%) scale(0.8);
+    opacity: 0.5;
+    z-index: 1;
+  }
+}
+
+// Кнопки навигации
+.slider__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 20;
+
+  &--prev {
+    left: 1rem;
+  }
+
+  &--next {
+    right: 1rem;
+  }
+}
+
+// Дополнительные стили для совместимости с предыдущим слайдером
+.slider {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider__container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+// Стили для пагинации
+.custom_pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 20;
+}
+
+.pagination_bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+}
+
+.pagination_bullet_active {
+  background-color: #fff;
+  opacity: 1;
+}
+
+// Переопределение стилей Swiper для соответствия дизайну
+:global {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+
+  .swiper-container-3d .swiper-slide-shadow-left,
+  .swiper-container-3d .swiper-slide-shadow-right {
+    background-image: none;
+  }
+
+  // Стили для соседних слайдов
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    opacity: 0.7;
+    transform: scale(0.9);
+    z-index: 1; // Устанавливаем z-index: 1 для соседних слайдов
+    transition: all 0.8s ease;
+  }
+
+  // Все остальные слайды тоже имеют z-index: 1
+  .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(
+      .swiper-slide-next
+    ) {
+    z-index: 1;
+  }
+
+  // Только активный слайд имеет z-index: 10
+  .swiper-slide-active {
+    z-index: 10;
+  }
+}
+
+.slideCenterToLeft {
+  animation: slideCenterToLeft 0.5s ease-in-out forwards;
+}
+
+@keyframes slideCenterToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slideLeftToCenter {
+  animation: slideLeftToCenter 0.5s ease-in-out forwards;
+}
+
+@keyframes slideLeftToCenter {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slidePrevToLeft {
+  animation: slidePrevToLeft 0.5s ease-in-out forwards;
+}
+
+@keyframes slidePrevToLeft {
+  from {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slideRightToNext {
+  animation: slideRightToNext 0.5s ease-in-out forwards;
+}
+
+@keyframes slideRightToNext {
+  from {
+    transform: translateX(50%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slideCenterToRight {
+  animation: slideCenterToRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideCenterToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slideRightToCenter {
+  animation: slideRightToCenter 0.5s ease-in-out forwards;
+}
+
+@keyframes slideRightToCenter {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slideNextToRight {
+  animation: slideNextToRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideNextToRight {
+  from {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+}
+
+.slideAfterNextToRight {
+  animation: slideAfterNextToRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideAfterNextToRight {
+  from {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+}
+
+.slidePrevPrevToRight {
+  animation: slidePrevPrevToRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slidePrevPrevToRight {
+  from {
+    transform: translateX(-300%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+}
+
+:global {
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+}
+
+.slider__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.slider__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+
+  &--prevPrev {
+    transform: translateX(-200%);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &--prev {
+    transform: translateX(-100%);
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  &--active {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 10;
+    pointer-events: auto;
+  }
+
+  &--next {
+    transform: translateX(100%);
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  &--afterNext {
+    transform: translateX(200%);
+    opacity: 0;
+    z-index: 1;
+  }
+}
