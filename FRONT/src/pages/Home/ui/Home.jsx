@@ -4,6 +4,7 @@ import { HeroSection } from "../../../widgets/HeroSection";
 import { ProductCategories } from "../../../features/ProductCategories";
 import { ManagingSlider } from "../../../features/ManagingSlider";
 import { Portfolio } from "../../../widgets/Portfolio";
+import { CaseSlider } from "../../../features/CaseSlider";
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       <ProductCategories />
       <ManagingSlider />
       <Portfolio />
+      <CaseSlider />
     </div>
   );
 }
